@@ -15,5 +15,9 @@ eval <<DYNAMIC
     def self.log(message)
       #{$namespace_class}::Log.perform_async(message)
     end
+
+    def self.reload!
+      Rake::Task['#{$namespace}:reload'].execute
+    end
   end
 DYNAMIC
