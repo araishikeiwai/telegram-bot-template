@@ -2,7 +2,7 @@ eval <<DYNAMIC
   class #{$namespace_class}
 
     def self.start
-      Telegram::Bot::Client.run($telegram_bot_token) do |bot|
+      Telegram::Bot::Client.run('#{$telegram_bot_token}') do |bot|
         bot.listen do |message|
           #{$namespace_class}::InputProcessor.perform_async(message, bot)
         end
