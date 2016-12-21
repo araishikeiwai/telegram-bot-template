@@ -5,6 +5,8 @@ class Object.const_get($namespace_class)::InputProcessor
   def perform(message, bot)
     @bot = bot
 
+    return unless message
+
     # uncomment to ignore edited messages
     # return if message.edit_date
 
@@ -13,6 +15,9 @@ class Object.const_get($namespace_class)::InputProcessor
 
     # uncomment to log incoming messages
     # $namespace_class.constantize.log("INCOMING #{message.inspect}")
+
+    # uncomment to ignore old messages (20 seconds)
+    # return unless Time.now.to_i - message.date <= 20
 
     text = message.text.sub("@#{$bot_username}", '')
 
