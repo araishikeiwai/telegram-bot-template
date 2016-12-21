@@ -19,10 +19,14 @@ class Object.const_get($namespace_class)::InputProcessor
     # uncomment to ignore old messages (20 seconds)
     # return unless Time.now.to_i - message.date <= 20
 
+    # uncomment to limit message rate (10 messages per 10 seconds (for group), per 30 seconds (for users)
+    # return unless $namespace_class.constantize::SpamUtil.add?(message.chat.id, message.chat.type.in?(%w(group supergroup))
+
     text = message.text.sub("@#{$bot_username}", '')
 
     if message.from.id == $admin_id && text =~ /reload/i
-      Rake::Task["#{$namespace}:reload"].execute
+      $namespace_class.constantize.reload!
+      reply(message, 'Reloaded!')
       return
     end
 
