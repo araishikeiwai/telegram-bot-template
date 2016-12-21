@@ -1,0 +1,8 @@
+$telegram_bot_token = 'your_bot_token'
+$namespace = 'project_name'
+$namespace_class = $namespace.camelize
+$bot_username = 'botusername'
+$redis = Redis.new
+$logger = Logger.new("#{$namespace}.log", 'weekly')
+SuckerPunch.logger = Logger.new("#{$namespace}_sucker_punch.log", 'weekly')
+Cachy.cache_store = $redis
