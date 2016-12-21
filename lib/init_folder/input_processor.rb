@@ -16,6 +16,11 @@ class Object.const_get($namespace_class)::InputProcessor
 
     text = message.text.sub("@#{$bot_username}", '')
 
+    if message.from.id == $admin_id && text =~ /reload/i
+      Rake::Task["#{$namespace}:reload"].execute
+      return
+    end
+
     # ADD YOUR BOT LOGIC HERE
   end
 
