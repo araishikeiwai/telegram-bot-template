@@ -17,7 +17,7 @@ class Object.const_get($namespace_class)::MessageSender
         # $namespace_class.constantize.log("OUTGOING #{options.inspect}")
         bot.api.send_message(options)
         sleep(0.05)
-      rescue Faraday::TimeoutError => e
+      rescue Faraday::TimeoutError, Faraday::ConnectionFailed => e
         $namespace_class.constantize.log('TIMEOUT')
         sleep(1.3)
         retry
