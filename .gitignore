@@ -51,6 +51,7 @@ build-iPhoneSimulator/
 
 config/inits/init.rb
 *.log
+*.log.*
 *.swp
 *.swo
 *.swn
